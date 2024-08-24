@@ -40,6 +40,8 @@ dependencies:
   bloc: ^8.1.4
   flutter_screenutil: ^5.9.3
   flutter_svg: ^2.0.10+1
+  social_login_buttons: ^1.0.7
+  gap: ^3.0.1
 
 dev_dependencies:
   flutter_test:
