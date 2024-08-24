@@ -5,6 +5,8 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:social_login_buttons/social_login_buttons.dart';
 
+import '../widgets/widgets.dart';
+
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
 
@@ -34,7 +36,7 @@ class WelcomeScreen extends StatelessWidget {
                     onPressed: () {}),
                 const Gap(10),
                 SocialLoginButton(
-                    buttonType: SocialLoginButtonType.google, onPressed: () {}),
+                    buttonType: SocialLoginButtonType.github, onPressed: () {}),
                 const Gap(10),
               ],
             ),
@@ -52,32 +54,19 @@ class WelcomeScreen extends StatelessWidget {
                         color: Theme.of(context).colorScheme.onSurface),
                   ),
                   TextButton(
-                      onPressed: ()=>context.pushNamed(Routes.LOGIN_ROUTE),
+                      onPressed: () => context.pushNamed(Routes.LOGIN_ROUTE),
                       child: Text(
                         'Signin',
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelLarge
-                            ?.copyWith(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onPrimaryContainer),
+                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onPrimaryContainer),
                       ))
                 ],
               ),
-              InkWell(
-                onTap: ()=> context.pushNamed(Routes.REGISTER_ROUTE),
-                child: Container(
-                  height: 60.h,
-                  color: Theme.of(context).colorScheme.onPrimaryContainer,
-                  child: Center(
-                      child: Text(
-                    'Create An Account',
-                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                        color: Theme.of(context).colorScheme.onSecondary),
-                  )),
-                ),
-              ),
+              FullWidthButton(
+                  buttonText: 'Craete An Account',
+                  onTap: () => context.pushNamed(Routes.REGISTER_ROUTE))
             ],
           )
         ],
