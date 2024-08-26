@@ -9,8 +9,8 @@ class RoutePages {
     routes: [
       GoRoute(path: Routes.SPLASH_ROUTE,name: Routes.SPLASH_ROUTE, pageBuilder: (context, state)=> const MaterialPage(child: SplashScreen())),
       GoRoute(path: Routes.WELCOME_ROUTE,name: Routes.WELCOME_ROUTE, pageBuilder: (context, state)=> const MaterialPage(child: WelcomeScreen())),
-      GoRoute(path: Routes.LOGIN_ROUTE,name: Routes.LOGIN_ROUTE, pageBuilder: (context, state)=> const MaterialPage(child: LoginScreen())),
-      GoRoute(path: Routes.REGISTER_ROUTE,name: Routes.REGISTER_ROUTE, pageBuilder: (context, state)=> const MaterialPage(child: RegisterScreen())),
+      GoRoute(path: Routes.SIGNIN_ROUTE,name: Routes.SIGNIN_ROUTE, pageBuilder: (context, state)=> const MaterialPage(child: SigninScreen())),
+      GoRoute(path: Routes.SIGNUP_ROUTE,name: Routes.SIGNUP_ROUTE, pageBuilder: (context, state)=> const MaterialPage(child: SignupScreen())),
       ShellRoute(
         builder: (context, state, child) => Wrapper(child: child),
           routes: [

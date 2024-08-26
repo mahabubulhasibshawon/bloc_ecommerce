@@ -1,6 +1,5 @@
 import 'package:bloc_ecommerce/src/routes/route_pages.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:social_login_buttons/social_login_buttons.dart';
@@ -54,7 +53,7 @@ class WelcomeScreen extends StatelessWidget {
                         color: Theme.of(context).colorScheme.onSurface),
                   ),
                   TextButton(
-                      onPressed: () => context.pushNamed(Routes.LOGIN_ROUTE),
+                      onPressed: () => context.pushNamed(Routes.SIGNIN_ROUTE),
                       child: Text(
                         'Signin',
                         style: Theme.of(context).textTheme.labelLarge?.copyWith(
@@ -66,7 +65,7 @@ class WelcomeScreen extends StatelessWidget {
               ),
               FullWidthButton(
                   buttonText: 'Craete An Account',
-                  onTap: () => context.pushNamed(Routes.REGISTER_ROUTE))
+                  onTap: () => context.pushNamed(Routes.SIGNUP_ROUTE))
             ],
           )
         ],

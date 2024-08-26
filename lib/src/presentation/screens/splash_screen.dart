@@ -1,4 +1,3 @@
-import 'package:bloc_ecommerce/app.dart';
 import 'package:bloc_ecommerce/src/blocs/spalsh/splash_cubit.dart';
 import 'package:bloc_ecommerce/src/routes/route_pages.dart';
 import 'package:flutter/material.dart';

@@ -11,7 +11,10 @@ class BlocEcommerceApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (context) => SplashCubit()..startSplash())],
+      providers: [
+        BlocProvider(create: (context) => SplashCubit()..startSplash()),
+        BlocProvider(create: (context) => RememberSwitchCubit())
+      ],
       child: ScreenUtilInit(
         designSize: const Size(360, 360),
         minTextAdapt: true,
