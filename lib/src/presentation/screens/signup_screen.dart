@@ -13,6 +13,7 @@ class SignupScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formkey = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
@@ -29,64 +30,109 @@ class SignupScreen extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
+              child: BlocBuilder<SignupBloc, SignupState>(
+                builder: (context, state) {
+                  if(state is SignupInitial){
+                    return Form(
+                      key: formkey,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          TextFormField(
+                            controller : state.usernameController,
+                            decoration: InputDecoration(
+                              label: const Text(
+                                'Username',
+                              ),
+                              labelStyle: Theme.of(context)
+                                  .textTheme
+                                  .labelMedium
+                                  ?.copyWith(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .outlineVariant),
+                            ),
+                            validator: (value){
+                              if(value == '' || value == null) {
+                                return 'username is required';
+                              }
+                              else {
+                                return null;
+                              }
+                            },
+                          ),
+                          TextFormField(
+                            controller : state.passwordController,
+                            obscureText: true,
+                            decoration: InputDecoration(
+                              label: const Text('Password'),
+                              labelStyle: Theme.of(context)
+                                  .textTheme
+                                  .labelMedium
+                                  ?.copyWith(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .outlineVariant),
+                            ),
+                            validator: (value){
+                              if(value == '' || value == null) {
+                                return 'password is required';
+                              }
+                              else {
+                                return null;
+                              }
+                            },
+                          ),
+                          TextFormField(
+                            controller : state.emailController,
+                            decoration: InputDecoration(
+                              label: const Text('Email'),
+                              labelStyle: Theme.of(context)
+                                  .textTheme
+                                  .labelMedium
+                                  ?.copyWith(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .outlineVariant),
+                            ),
+                            validator: (value){
+                              if(value == '' || value == null) {
+                                return 'email is required';
+                              }
+                              else {
+                                return null;
+                              }
+                            },
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+                  else {
+                    return Container();
+                  }
+                },
+              ),
+            ),
+            const Gap(20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  TextField(
-                    decoration: InputDecoration(
-                      label: const Text(
-                        'Username',
-                      ),
-                      labelStyle: Theme.of(context)
-                          .textTheme
-                          .labelMedium
-                          ?.copyWith(
-                              color:
-                                  Theme.of(context).colorScheme.outlineVariant),
-                    ),
+                  Text(
+                    'Remeber me',
+                    style: Theme.of(context).textTheme.labelMedium,
                   ),
-                  TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      label: const Text('Password'),
-                      labelStyle: Theme.of(context)
-                          .textTheme
-                          .labelMedium
-                          ?.copyWith(
-                              color:
-                                  Theme.of(context).colorScheme.outlineVariant),
-                    ),
-                  ),
-                  TextField(
-                    decoration: InputDecoration(
-                      label: const Text('Email'),
-                      labelStyle: Theme.of(context)
-                          .textTheme
-                          .labelMedium
-                          ?.copyWith(
-                              color:
-                                  Theme.of(context).colorScheme.outlineVariant),
-                    ),
-                  ),
-                  const Gap(20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Remeber me',
-                        style: Theme.of(context).textTheme.labelMedium,
-                      ),
-                      BlocBuilder<RememberSwitchCubit, RememberSwitchState>(
-                        builder: (context, state) {
-                          return Switch(
-                              value: state is SwitchChanged ? state.value : true,
-                              onChanged: (value) => context
-                                  .read<RememberSwitchCubit>()
-                                  .switchToggle(value));
-                        },
-                      )
-                    ],
+                  BlocBuilder<RememberSwitchCubit, RememberSwitchState>(
+                    builder: (context, state) {
+                      return Switch(
+                          value: state is SwitchChanged ? state.value : true,
+                          onChanged: (value) => context
+                              .read<RememberSwitchCubit>()
+                              .switchToggle(value));
+                    },
                   )
                 ],
               ),
@@ -96,7 +142,13 @@ class SignupScreen extends StatelessWidget {
       ),
       bottomNavigationBar: FullWidthButton(
         buttonText: 'Sign Up',
-        onTap: () => context.pushNamed(Routes.SIGNUP_ROUTE),
+        onTap: () {
+          if(formkey.currentState!.validate()){
+            print('validate');
+          }else {
+            print('not validate');
+          }
+        },
       ),
     );
   }
