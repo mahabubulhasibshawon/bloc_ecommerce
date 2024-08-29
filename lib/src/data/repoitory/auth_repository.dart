@@ -9,25 +9,25 @@ class AuthRepository {
   Future<User?> signInWithGoogle() async {
     try {
 
-      final GoogleSignInAccount? _googleSignIn = await GoogleSignIn().signIn();
+      final GoogleSignInAccount? googleSignIn = await GoogleSignIn().signIn();
 
       final GoogleSignInAccount? googleSignInAccount =
       await GoogleSignIn().signIn();
 
-      if (googleSignInAccount == null) {
+      if (googleSignIn == null) {
         // User canceled the sign-in process
         debugPrint("User canceled the signin process.");
         return null;
       }
 
       final GoogleSignInAuthentication googleSignInAuthentication =
-      await googleSignInAccount.authentication;
+      await googleSignIn.authentication;
       final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleSignInAuthentication.accessToken,
       );
 
       final UserCredential authResult =
-      await FirebaseAuth.instance.signInWithCredential(credential);
+      await _auth.signInWithCredential(credential);
       debugPrint('User: ${authResult.user?.email}');
       return authResult.user;
     } catch (error) {

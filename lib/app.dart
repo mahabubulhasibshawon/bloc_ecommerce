@@ -5,15 +5,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'src/data/repoitory/repository.dart';
+
 class BlocEcommerceApp extends StatelessWidget {
   const BlocEcommerceApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
+    return MultiRepositoryProvider(
+        providers: [
+          RepositoryProvider(create:(context)=> AuthRepository())
+        ],
+        child: MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => SplashCubit()..startSplash()),
-        BlocProvider(create: (context) => RememberSwitchCubit())
+        BlocProvider(create: (context) => RememberSwitchCubit()),
+        BlocProvider(create: (context)=> LoginBloc(context.read<AuthRepository>())),
+        BlocProvider(create: (context)=> SignupBloc())
       ],
       child: ScreenUtilInit(
         designSize: const Size(360, 360),
@@ -28,6 +36,6 @@ class BlocEcommerceApp extends StatelessWidget {
           );
         },
       ),
-    );
+    ),);
   }
 }
