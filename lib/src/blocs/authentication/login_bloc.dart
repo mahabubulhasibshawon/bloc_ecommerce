@@ -17,6 +17,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         emit(LoginLoading());
         final user = await repository.signInWithGoogle();
         debugPrint('user: ${user?.displayName}');
+        debugPrint('email: ${user?.email}');
         emit(LoginSuccess());
       } catch (e) {
         debugPrint(e.toString());
@@ -25,6 +26,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     });
 
     on<RequestFacebookLogin>((event, emit) {
+      emit(LoginLoading());
     });
   }
 }
