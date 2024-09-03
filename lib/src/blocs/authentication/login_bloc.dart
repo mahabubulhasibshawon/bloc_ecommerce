@@ -23,5 +23,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         emit(LoginFailed(e.toString()));
       }
     });
+
+    on<RequestFacebookLogin>((event, emit) {
+    });
   }
 }
