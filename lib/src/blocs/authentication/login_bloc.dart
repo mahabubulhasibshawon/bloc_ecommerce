@@ -28,5 +28,18 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     on<RequestFacebookLogin>((event, emit) {
       emit(LoginLoading());
     });
+
+    on<RequestTwitterLogin>((event, emit) async {
+      emit(LoginLoading());
+      try{
+        final user = await repository.signInWithTwitter();
+        debugPrint('user: ${user?.displayName}');
+        if(user != null){
+
+        }
+      } catch(e) {
+        debugPrint(e.toString());
+      }
+    });
   }
 }
