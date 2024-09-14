@@ -1,2 +1,2 @@
-const String TWITTER_API_KEY = '9lfZ7hImmyq6Qm2kLDCWtLbc2';
-const String TWITTER_SECRET_KEY = 'GQyv77yrxjFPXztU42PmqkBwdn6pgPJO8GTnfAjxHjtnCTfIAC';
+const String TWITTER_API_KEY = 'RkRBY211dlpwb3dwc3JFNG9hbEk6MTpjaQ';
+const String TWITTER_SECRET_KEY = 'qBB-BrmJRff54bKUnwP3LNVz1_bi0xS0oPnvQ2gw4UkbEWmFqf';
